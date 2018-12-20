@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users,
-    path: '',
-    path_names: {
-      sign_in: 'login',
-      sign_out: 'logout',
-      registration: 'signup'
-    },
-    controllers: {
-      sessions: 'sessions'
-    }
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # devise_scope :user do
+  #   post "/login" => "sessions#create"
+  #   delete "/logout" => "sessions#destroy"
+  #   get "/signup" => "devise/registrations#new", as: "new_user_registration"
+  # end
+  devise_for :users, controllers: {sessions: 'sessions', registrations: 'registrations'}
+
   get '/api_version', controller: :application, action: :api_version
 end

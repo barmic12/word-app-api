@@ -16,6 +16,7 @@ class ApplicationController < ActionController::API
       errors: [
         {
           status: 400,
+          title: 'Bad request',
           details: resource.errors
         }
       ]
