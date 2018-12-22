@@ -17,8 +17,8 @@ RSpec.describe "POST /signup", type: :request do
         post url, params: params
       end
 
-      it 'returns 200' do
-        expect(response).to have_http_status(200)
+      it 'returns 201' do
+        expect(response).to have_http_status(201)
       end
     end
 

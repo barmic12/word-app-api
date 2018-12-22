@@ -3,9 +3,9 @@ class ApplicationController < ActionController::API
     render json: {"api-version": "0.01" }
   end
 
-  def render_resource(resource)
+  def render_resource(resource, status)
     if resource.errors.empty?
-      render json: resource
+      render json: resource, status: status
     else
       validation_error(resource)
     end
@@ -21,5 +21,16 @@ class ApplicationController < ActionController::API
         }
       ]
     }, status: 400
+  end
+
+  def render_error(status, title, details)
+    render json: {
+      errors: [
+        {
+          title: title,
+          details: details
+        }
+      ]
+    }, status: status
   end
 end

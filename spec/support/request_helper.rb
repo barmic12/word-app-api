@@ -6,8 +6,8 @@ module RequestHelper
 
   def request_header
     user = create(:user)
-    headers = { 'Accept' => 'application/json', 'Content-Type' => 'application/json' }
-    auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user)
+    headers = { 'Accept' => 'application/json' }
+    @auth_headers = Devise::JWT::TestHelpers.auth_headers(headers, user)
   end
 
 end

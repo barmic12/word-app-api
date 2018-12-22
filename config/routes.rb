@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   #   get "/signup" => "devise/registrations#new", as: "new_user_registration"
   # end
   devise_for :users, controllers: {sessions: 'sessions', registrations: 'registrations'}
-
+  resources :words
   get '/api_version', controller: :application, action: :api_version
 end
