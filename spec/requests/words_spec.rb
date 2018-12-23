@@ -38,12 +38,12 @@ RSpec.describe "Words", type: :request do
         context 'word param is missing' do
           before { post words_path, headers: request_header }
 
-          it 'returns 400 status' do
-            expect(response).to have_http_status(400)
+          it 'returns 422 status' do
+            expect(response).to have_http_status(422)
           end
 
           it 'returns proper error title' do
-            expect(response_json['errors'].first['title']).to eq('Parametr Missing')
+            expect(response_json['errors'].first['title']).to eq('Missing parameter')
           end
 
           it 'returns proper error details' do
@@ -57,12 +57,12 @@ RSpec.describe "Words", type: :request do
             post words_path, headers: request_header, params: params
           end
 
-          it 'returns 400 status' do
-            expect(response).to have_http_status(400)
+          it 'returns 422 status' do
+            expect(response).to have_http_status(422)
           end
 
           it 'returns proper error title' do
-            expect(response_json['errors'].first['title']).to eq('Bad request')
+            expect(response_json['errors'].first['title']).to eq('Validation error')
           end
 
           it 'returns proper error details' do

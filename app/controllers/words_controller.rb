@@ -1,13 +1,14 @@
 class WordsController < ApplicationController
   before_action :authenticate_user!
+
   def create
-    begin
+    #begin
       @word = Word.new(word_params)
       @word.save
       render_resource(@word, :created)
-    rescue ActionController::ParameterMissing => e
-      render_error(400, 'Parametr Missing', e)
-    end
+    #rescue ActionController::ParameterMissing => e
+    #  render_error(400, 'Parametr Missing', e)
+    #end
   end
 
   private

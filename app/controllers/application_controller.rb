@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  rescue_from ActionController::ParameterMissing, with: :render_parameter_missing
+
   def api_version
     render json: {"api-version": "0.01" }
   end
@@ -7,7 +9,7 @@ class ApplicationController < ActionController::API
     if resource.errors.empty?
       render json: resource, status: status
     else
-      validation_error(resource)
+      render_error(422, 'Validation error', resource.errors)
     end
   end
 
@@ -15,7 +17,6 @@ class ApplicationController < ActionController::API
     render json: {
       errors: [
         {
-          status: 400,
           title: 'Bad request',
           details: resource.errors
         }
@@ -33,4 +34,9 @@ class ApplicationController < ActionController::API
       ]
     }, status: status
   end
+
+  def render_parameter_missing(exception)
+    render_error(422, 'Missing parameter', exception.message)
+  end
+
 end
